@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NovaBank - Practice Dashboard</title>
+<title>NovaBank</title>
 <style>
   :root {
     --bg: #f0f4f8; --card: white; --text: #1a1a1a; --sub: #64748b;
@@ -68,7 +68,7 @@
   <div class="balance-card">
     <p style="opacity:0.9; font-size:14px;">Available Balance</p>
     <div class="balance">$1,000,000.00</div>
-    <p style="opacity:0.8; font-size:12px;">For learning purposes only</p>
+    <p style="opacity:0.8; font-size:12px;">
   </div>
 
   <div class="transactions">
@@ -96,9 +96,6 @@
 </div>
 
 <script>
-const DEMO_USER = "Jonathan Goana";
-const DEMO_PASS = "goana545";
-
 function login() {
   const u = document.getElementById('user').value;
   const p = document.getElementById('pass').value;
@@ -122,8 +119,6 @@ function goHome() {
   if(document.getElementById('dashBox').style.display === 'block') logout();
 }
 
-function fakeTransfer() {
-  alert('Demo Mode: Transfers are disabled. This is fake UI for learning only.');
 }
 
 function toggleTheme() {
