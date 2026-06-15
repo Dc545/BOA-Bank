@@ -28,7 +28,6 @@
     button:hover { background:var(--primary-dark); }
     .error { color:#dc2626; font-size:13px; margin-top:8px; display:none; }
     .dashboard { display:none; }
-    .banner { background:var(--warning); border:1px solid #fde047; color:#713f12; padding:12px; border-radius:8px; margin-bottom:16px; font-size:13px; font-weight:600; text-align:center; }
     .balance-card { background:linear-gradient(135deg,var(--primary),#3b82f6); color:white; padding:24px; border-radius:12px; margin:20px 0; text-align:center; }
     .balance { font-size:38px; font-weight:700; margin:8px 0; }
     .badge { background:var(--badge-bg); color:var(--badge-text); padding:4px 8px; border-radius:6px; font-size:12px; font-weight:700; display:inline-block; margin-bottom:12px; }
@@ -112,13 +111,15 @@
   <script>
     const DEMO_USER = "Michael Benson";
     const DEMO_PASS = "ben2020";
-    let balance = 1234567.89;
+    let balance = 1234567000.89;   // ← Now matches the displayed balance
+
     let transactions = [
       {type:'credit', desc:'Salary Deposit', date:'Jun 12, 2026', amt:1000000000},
       {type:'debit', desc:'Grocery Store', date:'Jun 11, 2026', amt:2300.75},
       {type:'debit', desc:'Online Shopping', date:'Jun 10, 2026', amt:249.99},
       {type:'credit', desc:'Freelance Payment', date:'Jun 08, 2026', amt:1200}
     ];
+
     let currentAction = '';
 
     function login() {
@@ -210,7 +211,8 @@
         transactions.unshift({type:'debit', desc:'Transfer', date:today, amt:amt});
       }
 
-      document.getElementById('balance').textContent = '$' + balance.toLocaleString(undefined, {minimumFractionDigits:2});
+      // Update balance display with proper formatting
+      document.getElementById('balance').textContent = '$' + balance.toLocaleString('en-US', {minimumFractionDigits:2});
       renderTransactions();
       closeModal();
     }
