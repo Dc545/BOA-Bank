@@ -2,340 +2,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bank of America</title>
-  <style>
-    :root {
-      --primary: #0033a0;
-      --red: #e4002b;
-      --text: #1a1a1a;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f8f9fa;
-      color: var(--text);
-      max-width: 480px;
-      margin: 0 auto;
-      min-height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank of America</title>
+    <style>
+        :root {
+            --primary: #0033a0;
+            --red: #e4002b;
+            --text: #1a1a1a;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: var(--text);
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
 
-    .status-bar {
-      background: white;
-      padding: 8px 16px;
-      font-size: 13px;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #eee;
-    }
+        .status-bar {
+            background: white;
+            padding: 8px 16px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+        }
 
-    .header, .dash-header {
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: white;
-    }
-    .boa-logo {
-      height: 38px;
-    }
-    .dash-logo {
-      height: 32px;
-    }
+        .header, .dash-header {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+        }
+        .boa-logo {
+            height: 38px;
+        }
+        .dash-logo {
+            height: 32px;
+        }
 
-    .red-banner {
-      background: var(--red);
-      color: white;
-      text-align: center;
-      padding: 14px;
-      font-size: 18px;
-      font-weight: 600;
-    }
+        .red-banner {
+            background: var(--red);
+            color: white;
+            text-align: center;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: 600;
+        }
 
-    .login-container {
-      padding: 24px 16px;
-      background: white;
-    }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      font-size: 15px;
-    }
-    input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 17px;
-    }
-    input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(0,51,160,0.15);
-    }
+        .login-container {
+            padding: 24px 16px;
+            background: white;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 17px;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,51,160,0.15);
+        }
 
-    .checkbox-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 12px 0;
-      font-size: 15px;
-    }
-    .forgot {
-      color: var(--primary);
-      text-decoration: underline;
-      font-size: 15px;
-      margin: 12px 0 24px;
-      display: inline-block;
-    }
-    .login-btn {
-      background: #0066cc;
-      color: white;
-      border: none;
-      padding: 14px;
-      font-size: 17px;
-      font-weight: 600;
-      border-radius: 4px;
-      width: 100%;
-      cursor: pointer;
-    }
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 12px 0;
+            font-size: 15px;
+        }
+        .forgot {
+            color: var(--primary);
+            text-decoration: underline;
+            font-size: 15px;
+            margin: 12px 0 24px;
+            display: inline-block;
+        }
+        .login-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+        }
 
-    /* Dashboard */
-    .dashboard { display: none; background: #f8f9fa; min-height: 100vh; }
+        /* Dashboard */
+        .dashboard {
+            display: none;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
 
-    .balance-card {
-      background: linear-gradient(135deg, #0033a0, #0066cc);
-      color: white;
-      margin: 20px 16px;
-      padding: 28px 24px;
-      border-radius: 12px;
-      text-align: center;
-    }
-    .balance {
-      font-size: 34px;
-      font-weight: 700;
-      margin: 8px 0;
-    }
+        .balance-card {
+            background: linear-gradient(135deg, #0033a0, #0066cc);
+            color: white;
+            margin: 20px 16px;
+            padding: 28px 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .balance {
+            font-size: 34px;
+            font-weight: 700;
+            margin: 8px 0;
+        }
 
-    .btn-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-      padding: 0 16px;
-    }
-    .btn-secondary {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 14px 8px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-    }
+        .btn-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            padding: 0 16px;
+        }
+        .btn-secondary {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 14px 8px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
 
-    .transactions {
-      margin: 24px 16px;
-    }
-    .tx-title {
-      font-weight: 600;
-      margin-bottom: 12px;
-      font-size: 16px;
-    }
-    .tx-item {
-      background: white;
-      padding: 14px 16px;
-      margin-bottom: 8px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .tx-credit { color: #16a34a; font-weight: 600; }
-    .tx-debit { color: #dc2626; font-weight: 600; }
-    .tx-date { color: #666; font-size: 13px; }
+        .transactions {
+            margin: 24px 16px;
+        }
+        .tx-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .tx-item {
+            background: white;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .tx-credit { color: #16a34a; font-weight: 600; }
+        .tx-debit { color: #dc2626; font-weight: 600; }
+        .tx-date { color: #666; font-size: 13px; }
 
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-    .modal-content {
-      background: white;
-      width: 90%;
-      max-width: 340px;
-      border-radius: 12px;
-      padding: 24px;
-    }
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      color: #666;
-      padding: 20px 16px;
-    }
-  </style>
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 340px;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            padding: 20px 16px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- LOGIN PAGE -->
-  <div class="header">
-    <div style="display:flex; align-items:center; gap:8px;">
-        <img src="boa-logo.png .jpg" alt="Bank of America" class="boa-logo">
-        <strong>Bank of America</strong>
-    </div>
-    <div style="color: #0066cc; font-weight: 600;">Log In</div>
-</div>
+    <!-- LOGIN PAGE -->
+    <div id="loginPage">
+        <div class="header">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <img src="boa-logo.png .jpg" alt="Bank of America" class="boa-logo">
+                <strong>Bank of America</strong>
+            </div>
+            <div style="color: #0066cc; font-weight: 600;">Log In</div>
+        </div>
 
-    <div class="red-banner">Log In to Online Banking</div>
+        <div class="red-banner">Log In to Online Banking</div>
 
-  <div class="login-container">
-    <label for="userid">User ID</label>
-    <input type="text" id="userid" placeholder="Enter your User ID" autocomplete="username">
+        <div class="login-container">
+            <label for="userid">User ID</label>
+            <input type="text" id="userid" placeholder="Enter your User ID" autocomplete="username">
 
-    <div class="checkbox-row">
-        <input type="checkbox" id="saveUserId" checked>
-        <label for="saveUserId">Save this User ID</label>
-    </div>
+            <div class="checkbox-row">
+                <input type="checkbox" id="saveUserId" checked>
+                <label for="saveUserId">Save this User ID</label>
+            </div>
 
-    <label for="password" style="margin-top:24px;">Password</label>
-    <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+            <label for="password" style="margin-top:24px;">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
 
-    <a href="#" class="forgot">Forgot Password?</a>
+            <a href="#" class="forgot">Forgot Password?</a>
 
-    <button onclick="login()" class="login-btn">🔒 Log In</button>
-</div>
-  </div>
-
-  <!-- DASHBOARD -->
-  <div id="dashboard" class="dashboard">
-    <div class="dash-header">
-      <img src="boa-logo.png .jpg" alt="Bank of America" class="dash-logo">Bank Of America</p>
-      <div style="font-weight:600;">Hi, Michael</div>
+            <button onclick="login()" class="login-btn">🔒 Log In</button>
+        </div>
     </div>
 
-    <div class="balance-card">
-      <p style="opacity:0.9; font-size:15px;">Available Balance</p>
-      <div class="balance" id="balance">$1,000,000,000.00</div>
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="dashboard">
+        <div class="dash-header">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <img src="boa-logo.png .jpg" alt="Bank of America" class="dash-logo">
+                <strong>Bank of America</strong>
+            </div>
+            <div style="font-weight:600;">Hi, Michael</div>
+        </div>
+
+        <div class="balance-card">
+            <p style="opacity:0.9; font-size:15px;">Available Balance</p>
+            <div class="balance" id="balance">$1,000,000,000.00</div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn-secondary" onclick="openModal('deposit')">Deposit</button>
+            <button class="btn-secondary" onclick="openModal('withdraw')">Withdraw</button>
+            <button class="btn-secondary" onclick="openModal('transfer')">Transfer</button>
+        </div>
+
+        <div class="transactions">
+            <div class="tx-title">Recent Transactions</div>
+            <div id="txList"></div>
+        </div>
+
+        <button onclick="logout()" style="margin:20px 16px; width:calc(100% - 32px); padding:14px; background:#ddd; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
+            Log Out
+        </button>
+
+        <div class="footer">BOA • Bank Of America</div>
     </div>
 
-    <div class="btn-row">
-      <button class="btn-secondary" onclick="openModal('deposit')">Deposit</button>
-      <button class="btn-secondary" onclick="openModal('withdraw')">Withdraw</button>
-      <button class="btn-secondary" onclick="openModal('transfer')">Transfer</button>
+    <!-- Action Modal -->
+    <div class="modal" id="actionModal">
+        <div class="modal-content">
+            <h3 id="modalTitle" style="margin-bottom:16px; text-align:center;">Deposit</h3>
+            <input type="number" id="amountInput" placeholder="Enter amount" style="width:100%; padding:14px; font-size:17px; margin-bottom:16px; border:1px solid #ccc; border-radius:8px;">
+            <button onclick="confirmAction()" style="width:100%; padding:14px; background:#0066cc; color:white; border:none; border-radius:8px; font-size:17px; margin-bottom:8px;">Confirm</button>
+            <button onclick="closeModal()" style="width:100%; padding:14px; background:#f1f1f1; border:none; border-radius:8px; font-size:17px;">Cancel</button>
+        </div>
     </div>
 
-    <div class="transactions">
-      <div class="tx-title">Recent Transactions</div>
-      <div id="txList"></div>
-    </div>
+    <script>
+        let balance = 1000000000.00;
 
-    <button onclick="logout()" style="margin:20px 16px; width:calc(100% - 32px); padding:14px; background:#ddd; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
-      Log Out
-    </button>
+        let transactions = [
+            {type:'credit', desc:'Salary Deposit', date:'Jun 12, 2026', amt:1000000000.00},
+            {type:'debit', desc:'Grocery Store', date:'May 11, 2026', amt:10000.75},
+            {type:'debit', desc:'Amazon Purchase', date:'May 09, 2026', amt:20000.99},
+            {type:'credit', desc:'Freelance Payment', date:'May 08, 2026', amt:5000}
+        ];
 
-    <div class="footer">BOA • Bank Of America</div>
-  </div>
+        let currentAction = '';
 
-  <!-- Action Modal -->
-  <div class="modal" id="actionModal">
-    <div class="modal-content">
-      <h3 id="modalTitle" style="margin-bottom:16px; text-align:center;">Deposit</h3>
-      <input type="number" id="amountInput" placeholder="Enter amount" style="width:100%; padding:14px; font-size:17px; margin-bottom:16px; border:1px solid #ccc; border-radius:8px;">
-      <button onclick="confirmAction()" style="width:100%; padding:14px; background:#0066cc; color:white; border:none; border-radius:8px; font-size:17px; margin-bottom:8px;">Confirm</button>
-      <button onclick="closeModal()" style="width:100%; padding:14px; background:#f1f1f1; border:none; border-radius:8px; font-size:17px;">Cancel</button>
-    </div>
-  </div>
+        function login() {
+            const userid = document.getElementById('userid').value.trim();
+            const password = document.getElementById('password').value.trim();
 
-  <script>
-    let balance = 1000000000.00;
+            if (!userid || !password) {
+                alert("Please enter both User ID and Password");
+                return;
+            }
 
-    let transactions = [
-      {type:'credit', desc:'Salary Deposit', date:'Jun 12, 2026', amt:1000000000.00},
-      {type:'debit', desc:'Grocery Store', date:'May 11, 2026', amt:10000.75},
-      {type:'debit', desc:'Amazon Purchase', date:'May 09, 2026', amt:20000.99},
-      {type:'credit', desc:'Freelance Payment', date:'May 08, 2026', amt:5000}
-
-    let currentAction = '';
-
-    function login() {
-      document.getElementById('loginPage').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
-      renderTransactions();
-    }
-
-    function logout() {
-      document.getElementById('dashboard').style.display = 'none';
-      document.getElementById('loginPage').style.display = 'block';
-    }
-
-    function renderTransactions() {
-      const list = document.getElementById('txList');
-      list.innerHTML = '';
-      transactions.forEach(tx => {
-        const div = document.createElement('div');
-        div.className = 'tx-item';
-        div.innerHTML = `
-          <div>
-            <div>${tx.desc}</div>
-            <div class="tx-date">${tx.date}</div>
-          </div>
-          <div class="${tx.type === 'credit' ? 'tx-credit' : 'tx-debit'}">
-            ${tx.type === 'credit' ? '+' : '-'}$${tx.amt.toLocaleString('en-US')}
-          </div>
-        `;
-        list.appendChild(div);
-      });
-    }
-
-    function openModal(action) {
-      currentAction = action;
-      document.getElementById('modalTitle').textContent = action.charAt(0).toUpperCase() + action.slice(1);
-      document.getElementById('amountInput').value = '';
-      document.getElementById('actionModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('actionModal').style.display = 'none';
-    }
-
-    function confirmAction() {
-      const amt = parseFloat(document.getElementById('amountInput').value);
-      if (!amt || amt <= 0) {
-        alert("Please enter a valid amount");
-        return;
-      }
-
-      if (currentAction === 'deposit') {
-        balance += amt;
-      } else {
-        if (amt > balance) {
-          alert("Insufficient funds!");
-          closeModal();
-          return;
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            renderTransactions();
         }
-        balance -= amt;
-      }
 
-      document.getElementById('balance').textContent = 
-        '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
+        function logout() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('password').value = ''; // Clear password on logout
+        }
 
-      transactions.unshift({
-        type: currentAction === 'deposit' ? 'credit' : 'debit',
-        desc: currentAction.charAt(0).toUpperCase() + currentAction.slice(1),
-        date: 'Jun 16, 2026',
-        amt: amt
-      });
+        function renderTransactions() {
+            const list = document.getElementById('txList');
+            list.innerHTML = '';
+            transactions.forEach(tx => {
+                const div = document.createElement('div');
+                div.className = 'tx-item';
+                div.innerHTML = `
+                    <div>
+                        <div>${tx.desc}</div>
+                        <div class="tx-date">${tx.date}</div>
+                    </div>
+                    <div class="${tx.type === 'credit' ? 'tx-credit' : 'tx-debit'}">
+                        ${tx.type === 'credit' ? '+' : '-'}$${tx.amt.toLocaleString('en-US')}
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+        }
 
-      renderTransactions();
-      closeModal();
-    }
-  </script>
+        function openModal(action) {
+            currentAction = action;
+            document.getElementById('modalTitle').textContent = action.charAt(0).toUpperCase() + action.slice(1);
+            document.getElementById('amountInput').value = '';
+            document.getElementById('actionModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('actionModal').style.display = 'none';
+        }
+
+        function confirmAction() {
+            const amt = parseFloat(document.getElementById('amountInput').value);
+            if (!amt || amt <= 0) {
+                alert("Please enter a valid amount");
+                return;
+            }
+
+            if (currentAction === 'deposit') {
+                balance += amt;
+            } else {
+                if (amt > balance) {
+                    alert("Insufficient funds!");
+                    closeModal();
+                    return;
+                }
+                balance -= amt;
+            }
+
+            document.getElementById('balance').textContent = 
+                '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
+
+            transactions.unshift({
+                type: currentAction === 'deposit' ? 'credit' : 'debit',
+                desc: currentAction.charAt(0).toUpperCase() + currentAction.slice(1),
+                date: 'Jun 16, 2026',
+                amt: amt
+            });
+
+            renderTransactions();
+            closeModal();
+        }
+    </script>
 </body>
 </html>
