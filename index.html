@@ -30,7 +30,7 @@
       border-bottom: 1px solid #eee;
     }
 
-    .header {
+    .header, .dash-header {
       padding: 16px;
       display: flex;
       align-items: center;
@@ -39,6 +39,9 @@
     }
     .boa-logo {
       height: 38px;
+    }
+    .dash-logo {
+      height: 32px;
     }
 
     .red-banner {
@@ -101,15 +104,6 @@
 
     /* Dashboard */
     .dashboard { display: none; background: #f8f9fa; min-height: 100vh; }
-    .dash-header {
-      background: white;
-      padding: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #eee;
-    }
-    .dash-logo { height: 32px; }
 
     .balance-card {
       background: linear-gradient(135deg, #0033a0, #0066cc);
@@ -193,8 +187,7 @@
   <!-- LOGIN PAGE -->
   <div id="loginPage">
     <div class="header">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Bank_of_America_logo.svg/512px-Bank_of_America_logo.svg.png" 
-           alt="Bank of America" class="boa-logo">
+      <img src="boa-logo.png.jpg" alt="Bank of America" class="boa-logo">
       <div style="color: #0066cc; font-weight: 600;">Log In</div>
     </div>
 
@@ -210,7 +203,7 @@
       </div>
 
       <label style="margin-top:24px;">Password</label>
-      <input type="password" id="password" value="ben2020">
+      <input type="password" id="password" placeholder="Enter your password">
 
       <a href="#" class="forgot">Forgot your Password?</a>
 
@@ -221,8 +214,7 @@
   <!-- DASHBOARD -->
   <div id="dashboard" class="dashboard">
     <div class="dash-header">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Bank_of_America_logo.svg/512px-Bank_of_America_logo.svg.png" 
-           alt="Bank of America" class="dash-logo">
+      <img src="boa-logo.png.jpg" alt="Bank of America" class="dash-logo">
       <div style="font-weight:600;">Hi, Michael</div>
     </div>
 
@@ -246,7 +238,7 @@
       Log Out
     </button>
 
-    <div class="footer">BOA-Bank</div>
+    <div class="footer">BOA • Bank Of America</div>
   </div>
 
   <!-- Action Modal -->
@@ -260,10 +252,10 @@
   </div>
 
   <script>
-    let balance = 1000000000.00;   // ← Updated to 1 Billion
+    let balance = 1000000000.00;
 
     let transactions = [
-      {type:'credit', desc:'Salary Deposit', date:'Jun 12, 2026', amt:1000000000.00},
+      {type:'credit', desc:'Salary Deposit', date:'Jun 12, 2026', amt:4500.00},
       {type:'debit', desc:'Grocery Store', date:'Jun 11, 2026', amt:89.75},
       {type:'debit', desc:'Amazon Purchase', date:'Jun 10, 2026', amt:129.99},
       {type:'credit', desc:'Freelance Payment', date:'Jun 08, 2026', amt:850}
@@ -330,11 +322,9 @@
         balance -= amt;
       }
 
-      // Update balance display
       document.getElementById('balance').textContent = 
         '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
 
-      // Add to transactions
       transactions.unshift({
         type: currentAction === 'deposit' ? 'credit' : 'debit',
         desc: currentAction.charAt(0).toUpperCase() + currentAction.slice(1),
